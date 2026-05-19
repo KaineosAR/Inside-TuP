@@ -1,11 +1,10 @@
 /* ==========================================================================
-   materias.css — Inside TuP
-   Styles for materias.html.
+   materia.css — Inside TuP
+   Styles for individual subject pages (materias/*.html).
    ========================================================================== */
 
 /* ==========================================================================
    1. FONTS, VARIABLES & RESET
-   Copied from index.css — will move to global.css later.
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap");
@@ -24,13 +23,13 @@
   --font-body: "DM Sans", sans-serif;
   --font-mono: "DM Mono", monospace;
 
-  --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
 
   --max-width: 1920px;
@@ -112,40 +111,7 @@ main {
 }
 
 /* ==========================================================================
-   2. VIEW TRANSITIONS
-   Global cross-fade between pages + per-card morphing.
-   ========================================================================== */
-
-@view-transition {
-  navigation: auto;
-}
-
-/* Prevent white flash — tell browser the page is dark */
-:root {
-  color-scheme: dark;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.25s;
-}
-
-/* Per-card morphing durations */
-::view-transition-old(card-programacion-1),
-::view-transition-new(card-programacion-1),
-::view-transition-old(card-arquitectura-so),
-::view-transition-new(card-arquitectura-so),
-::view-transition-old(card-matematica),
-::view-transition-new(card-matematica),
-::view-transition-old(card-org-empresarial),
-::view-transition-new(card-org-empresarial) {
-  animation-duration: 0.35s;
-  animation-timing-function: ease-in-out;
-}
-
-/* ==========================================================================
    3. HEADER & NAV
-   Identical to index.css.
    ========================================================================== */
 
 header {
@@ -257,30 +223,50 @@ nav button[aria-expanded="true"] span:nth-child(3) {
 }
 
 /* ==========================================================================
-   4. MATERIAS SECTION
+   4. PAGE LAYOUT
    ========================================================================== */
 
-.section.materias {
+.section.materia {
   padding-block: var(--space-12);
 }
 
-.section.materias > div {
+.section.materia > div {
   max-width: var(--content-width);
   margin-inline: auto;
   padding-inline: var(--container-pad);
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--space-10);
 }
 
-/* Page header */
-.materias-header {
+/* ==========================================================================
+   5. BACK LINK
+   ========================================================================== */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  transition: color var(--t-fast);
+}
+
+.back-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   6. MATERIA INTRO — cuatri label + h1
+   ========================================================================== */
+
+.materia-intro {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.materias-header > p {
+.materia-intro > p {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.12em;
@@ -288,7 +274,7 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   color: var(--color-accent);
 }
 
-.materias-header h1 {
+.materia-intro h1 {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 300;
   line-height: 1.15;
@@ -296,59 +282,40 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   color: var(--color-text-primary);
 }
 
+.materia-intro h1 strong {
+  font-weight: 500;
+}
+
 /* ==========================================================================
-   5. CUATRIMESTRE BLOCK
+   7. MATERIA TOP — card + metadata side by side
    ========================================================================== */
 
-.cuatri-block {
+.materia-top {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-8);
+  align-items: flex-start;
 }
 
-.cuatri-label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  border-bottom: 0.5px solid var(--color-border);
-  padding-bottom: var(--space-3);
+@media (width < 414px) {
+  .materia-top {
+    flex-wrap: wrap;
+  }
 }
 
-/* ==========================================================================
-   6. CARDS GRID
-   ========================================================================== */
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: var(--space-4);
-}
-
-/* Card — each materia */
+/* Card — same visual as materias.html */
 .materia-card {
+  flex-shrink: 0;
+  width: 160px;
+  aspect-ratio: 3 / 4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  aspect-ratio: 3 / 4; /* fixed proportions — all cards same size */
   padding: var(--space-5);
   border-radius: var(--radius-lg);
   border: 0.5px solid var(--color-border);
-  background-color: #16201a; /* 1° cuatri — green tint */
-  cursor: pointer;
-  transition:
-    border-color var(--t-fast),
-    transform var(--t-fast);
-  text-decoration: none;
+  background-color: #16201a;
 }
 
-.materia-card:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
-}
-
-/* Top block: logo + name */
 .card-top {
   display: flex;
   flex-direction: column;
@@ -370,11 +337,9 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   color: var(--color-text-primary);
 }
 
-/* Icon — centered */
 .card-icon {
   font-size: 2rem;
   color: var(--color-accent);
-  /* Material Symbols rendering */
   font-variation-settings:
     "FILL" 0,
     "wght" 300,
@@ -382,7 +347,6 @@ nav button[aria-expanded="true"] span:nth-child(3) {
     "opsz" 32;
 }
 
-/* Footer label */
 .card-footer {
   font-family: var(--font-mono);
   font-size: 0.5625rem;
@@ -392,64 +356,339 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   color: var(--color-text-muted);
 }
 
-@media (width < 359px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
+/* Metadata column */
+.materia-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  justify-content: center;
+  padding-top: var(--space-2);
+}
 
-  .card-top {
-    gap: var(--space-1); /* Menos espacio entre logo y nombre */
-  }
+.meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
 
-  .card-name {
-    font-size: 0.75rem;
-    line-height: 0.95;
-  }
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
 
-  .card-footer {
-    font-size: 0.5rem; /* Footer aún más pequeño */
+.meta-item dt {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.meta-item dd {
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+}
+
+/* Estado badge */
+.meta-estado {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.meta-estado.cursando {
+  color: var(--color-accent);
+}
+
+.meta-estado.aprobada {
+  color: rgba(125, 211, 176, 0.5);
+}
+
+.meta-estado.regular {
+  color: var(--color-text-muted);
+}
+
+/* Ghost button — calendar download */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition:
+    border-color var(--t-fast),
+    color var(--t-fast);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}
+
+@media (width < 415px) {
+  .btn-ghost {
+    gap: var(--space-5);
   }
 }
 
-@media (359px <= width < 384px) {
-  .materia-card {
-    aspect-ratio: 4 / 5; /* Menos altura */
-  }
-
-  .card-top {
-    gap: var(--space-1); /* Menos espacio entre logo y nombre */
-  }
-
-  .card-name {
-    font-size: 0.75rem; /* Texto más pequeño */
-    line-height: 1.1;
-  }
-
-  .card-footer {
-    font-size: 0.5rem; /* Footer aún más pequeño */
-  }
+.btn-icon {
+  font-size: 1.125rem;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 20;
 }
 
 /* ==========================================================================
-   7. PENDING MESSAGE
+   8. DIVIDER — only between top block and clases section
    ========================================================================== */
 
-.pendiente-block {
+.divider {
+  border: none;
+  border-top: 0.5px solid var(--color-border);
+}
+
+/* ==========================================================================
+   9. CLASES SECTION
+   ========================================================================== */
+
+.clases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.clases h2 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+/* Individual class block — border-top separates each one */
+.clase-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
   border-top: 0.5px solid var(--color-border);
   padding-top: var(--space-8);
 }
 
-.pendiente-texto {
+/* First block has no top border — the h2 already separates it */
+.clase-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.clase-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.clase-num {
   font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.clase-fecha {
   font-size: 0.8125rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
-  max-width: 52ch;
+}
+
+.clase-tema {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.clase-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  max-width: 60ch;
+}
+
+/* Actions row: collapsible trigger + download all */
+.clase-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (width <= 390px) {
+  .clase-actions {
+    display: block;
+  }
+}
+
+/* Collapsible files wrapper */
+.clase-archivos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.clase-archivos-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition:
+    border-color var(--t-fast),
+    color var(--t-fast);
+  align-self: flex-start;
+}
+
+.clase-archivos-trigger:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}
+
+.trigger-icon {
+  font-size: 1rem;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 20;
+  transition: transform var(--t-base);
+}
+
+.clase-archivos-trigger[aria-expanded="true"] .trigger-icon {
+  transform: rotate(180deg);
+}
+
+/* Collapsible body — same max-height pattern as FAQ */
+.clase-archivos-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+}
+
+.clase-archivos-body.is-open {
+  max-height: 600px;
+}
+
+/* Download all button */
+.clase-dl-all {
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
-   8. FOOTER
-   Identical to index.css.
+   10. FILES LIST
+   ========================================================================== */
+
+.archivos-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.archivo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: border-color var(--t-fast);
+}
+
+.archivo-item:hover {
+  border-color: var(--color-border-hover);
+}
+
+.archivo-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0; /* allows text truncation */
+}
+
+.archivo-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.archivo-nombre {
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.archivo-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+/* Ver / Descargar button */
+.archivo-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--t-fast);
+  white-space: nowrap;
+}
+
+.archivo-btn:hover {
+  color: var(--color-accent);
+}
+
+.archivo-btn .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 20;
+}
+
+@media (max-width: 480px) {
+  .archivo-nombre {
+    font-size: 0.8125rem;
+  }
+
+  .archivo-desc {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   11. FOOTER
    ========================================================================== */
 
 footer {
