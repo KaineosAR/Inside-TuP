@@ -300,6 +300,15 @@ nav button[aria-expanded="true"] span:nth-child(3) {
    5. CUATRIMESTRE BLOCK
    ========================================================================== */
 
+.materias-aviso {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  max-width: 58ch;
+  padding: var(--space-4) var(--space-5);
+  border-left: 2px solid var(--color-border);
+}
+
 .cuatri-block {
   display: flex;
   flex-direction: column;

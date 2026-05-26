@@ -527,9 +527,9 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   flex-wrap: wrap;
 }
 
-@media (width <= 390px) {
+@media (width <= 480px) {
   .clase-actions {
-    display: block;
+    flex-direction: column;
   }
 }
 
@@ -643,6 +643,7 @@ nav button[aria-expanded="true"] span:nth-child(3) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 400px;
 }
 
 .archivo-desc {
@@ -677,9 +678,10 @@ nav button[aria-expanded="true"] span:nth-child(3) {
     "opsz" 20;
 }
 
-@media (max-width: 480px) {
+@media (width <=480px) {
   .archivo-nombre {
     font-size: 0.8125rem;
+    max-width: 80px;
   }
 
   .archivo-desc {
