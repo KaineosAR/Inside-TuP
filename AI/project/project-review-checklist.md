@@ -40,9 +40,71 @@ Checklist específico del proyecto. Complementa `system/system-review-checklist.
 
 ## Archivos académicos
 
-- No se subieron autoevaluaciones ni parciales.
-- Las imágenes están en `.webp` cuando sea posible.
-- Los archivos no son innecesariamente pesados.
+Para cada `.archivo-item` verificar:
+
+### Ruta y nombre
+
+- el nombre mostrado en `.archivo-nombre` coincide exactamente con el nombre del archivo indicado en `href`
+- la extensión obtenida desde `href` coincide con la extensión mostrada en `.archivo-nombre`
+
+---
+
+### Ícono del archivo
+
+Verificar que `.archivo-icon` utiliza el ícono correcto según la extensión del archivo indicada en `href`.
+
+---
+
+### Comportamiento del enlace
+
+Si la extensión es `.pdf`:
+
+- existe `target="_blank"`
+- existe `rel="noopener noreferrer"`
+
+Si la extensión no es `.pdf`:
+
+- existe el atributo `download`
+
+---
+
+### aria-label
+
+Si la extensión es `.pdf`:
+
+- el `aria-label` comienza con `Ver`
+- el nombre indicado en el `aria-label` coincide con `.archivo-nombre`
+
+Si la extensión no es `.pdf`:
+
+- el `aria-label` comienza con `Descargar`
+- el nombre indicado en el `aria-label` coincide con `.archivo-nombre`
+
+---
+
+### Acción visible
+
+Si la extensión es `.pdf`:
+
+- el ícono de acción es `visibility`
+- el texto visible es `Ver`
+
+Si la extensión no es `.pdf`:
+
+- el ícono de acción es `download`
+- el texto visible es `Descargar`
+
+---
+
+### Descripción
+
+Fuera de elementos `.extras`, verificar que `.archivo-desc` contiene únicamente uno de los siguientes valores:
+
+- Lectura
+- Práctica
+- Práctica resuelta
+- Complemento
+- Anotaciones en clase
 
 ---
 

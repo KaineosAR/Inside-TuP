@@ -55,18 +55,18 @@ Reglas específicas de este proyecto. Complementan `system/coding-rules.md`, no 
 ## CSS — variables del proyecto
 
 ```css
---color-bg:             #141417;
---color-surface:        #1E1E22;
---color-border:         rgba(255, 255, 255, 0.08);
---color-border-hover:   rgba(255, 255, 255, 0.15);
---color-text-primary:   rgba(255, 255, 255, 0.92);
+--color-bg: #141417;
+--color-surface: #1e1e22;
+--color-border: rgba(255, 255, 255, 0.08);
+--color-border-hover: rgba(255, 255, 255, 0.15);
+--color-text-primary: rgba(255, 255, 255, 0.92);
 --color-text-secondary: rgba(255, 255, 255, 0.55);
---color-text-muted:     rgba(255, 255, 255, 0.30);
---color-accent:         #7DD3B0;
---color-accent-dim:     rgba(125, 211, 176, 0.12);
---font-body:            'DM Sans', sans-serif;
---font-mono:            'DM Mono', monospace;
---navbar-height:        56px;
+--color-text-muted: rgba(255, 255, 255, 0.3);
+--color-accent: #7dd3b0;
+--color-accent-dim: rgba(125, 211, 176, 0.12);
+--font-body: "DM Sans", sans-serif;
+--font-mono: "DM Mono", monospace;
+--navbar-height: 56px;
 ```
 
 ---
@@ -74,6 +74,7 @@ Reglas específicas de este proyecto. Complementan `system/coding-rules.md`, no 
 ## Fuentes
 
 Cargadas vía Google Fonts CDN:
+
 - **DM Sans** — cuerpo, UI
 - **DM Mono** — labels, tags, logo, detalles técnicos
 - **Material Symbols Outlined** — iconos (solo en páginas que los usan)
@@ -89,16 +90,74 @@ Cargadas vía Google Fonts CDN:
 
 ---
 
-## Clasificación de material
+## Archivos académicos
 
-- Lectura: Para material teórico.
-- Práctica: Para guías de ejercicios.
-- Complemento: Para enlaces o PDFs extra.
-- Anotaciones en clase: Para notas tomadas durante la clase, como resúmenes o puntos clave.
-- Práctica resuelta: Para guías de ejercicios que ya tienen la solución, o para ejemplos resueltos.
+Cada elemento `.archivo-item` debe mantener consistencia entre:
+
+- ruta del archivo (`href`)
+- nombre mostrado (`.archivo-nombre`)
+- ícono del archivo (`.archivo-icon`)
+- comportamiento del enlace
+- `aria-label`
+- ícono de acción
+- texto de acción
+
+### Nombre del archivo
+
+El contenido de `.archivo-nombre` debe coincidir exactamente con el nombre real del archivo indicado en `href`.
+
+Ejemplo:
+
+href:
+`../assets/academic-files/.../Guia-de-Ejercicios.pdf`
+
+nombre:
+`Guia-de-Ejercicios.pdf`
 
 ---
 
-## Notas pendientes
+### Tipos de archivo e íconos
 
-- Los CSS individuales tienen variables y reset duplicados. Cuando el proyecto esté estable, unificar en `global.css`.
+| Extensión               | Ícono          |
+| ----------------------- | -------------- |
+| pdf                     | picture_as_pdf |
+| doc / docx              | description    |
+| pptx                    | present_to_all |
+| xlsx                    | table          |
+| jpeg / jpg / png / webp | image          |
+| mp4                     | movie          |
+| zip                     | folder_zip     |
+| md                      | description    |
+
+---
+
+### Comportamiento
+
+Archivos PDF:
+
+- `target="_blank"`
+- `rel="noopener noreferrer"`
+- ícono de acción: `visibility`
+- texto de acción: `Ver`
+- aria-label: `Ver [nombre del archivo]`
+
+Todos los demás archivos:
+
+- atributo `download`
+- ícono de acción: `download`
+- texto de acción: `Descargar`
+- aria-label: `Descargar [nombre del archivo]`
+
+---
+
+### Descripción
+
+Fuera de elementos `.extras`, únicamente se permiten:
+
+- Lectura
+- Práctica
+- Práctica resuelta
+- Complemento
+- Anotaciones en clase
+
+---
