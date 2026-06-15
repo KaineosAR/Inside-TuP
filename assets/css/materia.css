@@ -4,7 +4,7 @@
    Imports shared styles from global.css (fonts, variables, reset, header/nav, footer).
    ========================================================================== */
 
-@import url('./global.css');
+@import url("./global.css");
 
 /* ==========================================================================
    1. HEADER & NAV styles are in global.css
@@ -375,7 +375,7 @@
 }
 
 .clase-archivos-body.is-open {
-  max-height: 600px;
+  max-height: 700px;
 }
 
 /* Download all button */
@@ -433,7 +433,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 400px;
+  max-width: 425px;
+}
+
+.extras-list .archivo-nombre {
+  max-width: 500px;
 }
 
 .archivo-desc {
@@ -468,14 +472,63 @@
     "opsz" 20;
 }
 
-@media (width <=480px) {
+@media (width <= 500px) {
   .archivo-nombre {
     font-size: 0.8125rem;
-    max-width: 80px;
+    max-width: 100px;
   }
 
   .archivo-desc {
     display: none;
+  }
+}
+
+@media (500px < width <= 600px) {
+  .archivo-nombre {
+    font-size: 0.8125rem;
+    max-width: 150px;
+  }
+
+  .archivo-desc {
+    display: none;
+  }
+}
+
+@media (600px <width <= 650px) {
+  .archivo-nombre {
+    font-size: 0.8125rem;
+    max-width: 200px;
+  }
+}
+
+@media (650px < width <= 775px) {
+  .archivo-nombre {
+    font-size: 0.8125rem;
+    max-width: 300px;
+  }
+}
+
+@media (width <= 410px) {
+  .extras-list .archivo-nombre {
+    max-width: 125px;
+  }
+}
+
+@media (410px < width <= 515px) {
+  .extras-list .archivo-nombre {
+    max-width: 200px;
+  }
+}
+
+@media (515px < width <= 610px) {
+  .extras-list .archivo-nombre {
+    max-width: 300px;
+  }
+}
+
+@media (610px < width <= 710px) {
+  .extras-list .archivo-nombre {
+    max-width: 400px;
   }
 }
 

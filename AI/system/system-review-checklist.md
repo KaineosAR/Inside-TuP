@@ -1,7 +1,15 @@
 # system-review-checklist.md
 
-Checklist universal de validación antes de considerar una tarea terminada.
-Aplica a todo proyecto web.
+Checklist universal de validación antes de considerar una tarea terminada. Aplica a todo proyecto web.
+
+---
+
+## Alcance de la revisión
+
+- La revisión debe cubrir todo el alcance solicitado antes de emitir conclusiones.
+- No detener el análisis al encontrar los primeros errores.
+- Continuar revisando y registrar todos los problemas detectados dentro del alcance definido.
+- Si el volumen del proyecto impide una revisión completa, indicar explícitamente qué partes fueron revisadas y cuáles no.
 
 ---
 

@@ -4,7 +4,7 @@
    Imports shared styles from global.css (fonts, variables, reset, header/nav, footer).
    ========================================================================== */
 
-@import url('./global.css');
+@import url("./global.css");
 
 /* ==========================================================================
    1. VIEW TRANSITIONS
@@ -15,27 +15,11 @@
   navigation: auto;
 }
 
+/* Próximamente */
+
 /* Prevent white flash — tell browser the page is dark */
 :root {
   color-scheme: dark;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.25s;
-}
-
-/* Per-card morphing durations */
-::view-transition-old(card-programacion-1),
-::view-transition-new(card-programacion-1),
-::view-transition-old(card-arquitectura-so),
-::view-transition-new(card-arquitectura-so),
-::view-transition-old(card-matematica),
-::view-transition-new(card-matematica),
-::view-transition-old(card-org-empresarial),
-::view-transition-new(card-org-empresarial) {
-  animation-duration: 0.35s;
-  animation-timing-function: ease-in-out;
 }
 
 /* ==========================================================================
@@ -197,12 +181,7 @@
   }
 
   .card-name {
-    font-size: 0.75rem;
     line-height: 0.95;
-  }
-
-  .card-footer {
-    font-size: 0.5rem; /* Footer aún más pequeño */
   }
 }
 
@@ -216,12 +195,43 @@
   }
 
   .card-name {
-    font-size: 0.75rem; /* Texto más pequeño */
     line-height: 1.1;
+  }
+}
+
+@media (width <= 553px) {
+  .card-logo {
+    font-size: 0.4875rem;
+  }
+
+  .card-name {
+    font-size: 0.8075rem;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
   }
 
   .card-footer {
-    font-size: 0.5rem; /* Footer aún más pequeño */
+    font-size: 0.4425rem;
+  }
+}
+
+@media (553px < width <= 722px) {
+  .card-logo {
+    font-size: 0.5875rem;
+  }
+
+  .card-name {
+    font-size: 0.8375rem;
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+  }
+
+  .card-footer {
+    font-size: 0.4625rem;
   }
 }
 

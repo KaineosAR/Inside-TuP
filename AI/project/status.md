@@ -6,12 +6,21 @@ Estado actual del proyecto. Registra únicamente tareas pendientes o incompletas
 
 ## Pendiente
 
-- Revisar <span class="material-symbols-outlined archivo-icon"> dentro de <div class="archivo-info"> (buscar tipos correctos de íconos según tipo de archivo).
-- Revisar <a><span class="material-symbols-outlined"></span></a> y sus atributos (alternar entre "visibility" y "download").
-- Revisar <a class="archivo-btn" aria-label=""></a> (que el aria-label corresponda a la acción del botón, Ver o Descargar, y al nombre del archivo).
-- Revisar longitud de nombre de archivos (que no tape nada).
-- Hacer el review con la IA.
-- Revisar todos los HTML, CSS y JS personalmente.
+- Mejorar la transición entre páginas.
+- Revisar index.html personalmente.
+- Revisar materias.html personalmente.
+- Revisar programacion-1.html personalmente.
+- Revisar arquitectura-so.html personalmente.
+- Revisar matematicas.html personalmente.
+- Revisar organizacion-empresarial.html personalmente.
+- Revisar global.css personalmente.
+- Revisar index.css personalmente.
+- Revisar materias.css personalmente.
+- Revisar materia.css personalmente.
+- Revisar global.js personalmente.
+- Revisar index.js personalmente.
+- Revisar materias.js personalmente.
+- Revisar materia.js personalmente.
 - Completar documentación pendiente del sistema IA (retrospective.md x2).
 - Compartir el proyecto en comunidades relevantes.
 - Recopilar feedback de estudiantes.
